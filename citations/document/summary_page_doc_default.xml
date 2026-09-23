@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+
+<!-- 
+-->
+
+<cite:citation xmlns="http://www.w3.org/1999/xhtml" xmlns:epc="http://eprints.org/ep3/control" xmlns:cite="http://eprints.org/ep3/citation" >
+
+ 
+    <div class="summary_page_doc_icon">
+      <epc:if test="$item.is_public()"> 
+        <epc:print expr="$item.icon('LargeIcon','noNewWindow')"/>
+
+
+        <!--
+        <a href="{$item.url()}">      
+          <epc:if test="formatdesc">
+            <img src="{$item.thumbnail_url('lightbox')}" alt="{formatdesc}"/>
+          </epc:if>
+          <epc:if test="!formatdesc">
+            <img src="{$item.thumbnail_url('lightbox')}" alt="{$item.property('eprintid').as_item().property('title')}"/>
+          </epc:if>
+        </a>
+        -->
+      </epc:if>
+      <epc:if test="!$item.is_public()">
+        <epc:print expr="$item.icon('LargeIcon','noNewWindow')"/>
+      </epc:if>
+    </div>
+
+    <div class="summary_page_doc_info">
+      <div class="ep_document_citation_wrapper"> 
+        <epc:print expr="$item.citation('summary_page_doc_info')" />    
+      </div>
+    </div>
+
+</cite:citation>

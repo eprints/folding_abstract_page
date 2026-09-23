@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+
+<!-- 
+Used for rendering Documents (EPrint Documents, can be a Video, Image, etc) on the summary page.
+-->
+
+<cite:citation xmlns="http://www.w3.org/1999/xhtml" xmlns:epc="http://eprints.org/ep3/control" xmlns:cite="http://eprints.org/ep3/citation" >
+    <div class="summary_page_doc"> 
+        <epc:choose>
+            <epc:when test="format='video' or format='audio'">
+                <print expr="$item.citation('summary_page_doc_video_audio')"/>
+            </epc:when>
+            <epc:otherwise>
+                <print expr="$item.citation('summary_page_doc_default')"/>
+            </epc:otherwise>	
+        </epc:choose>
+    </div>
+
+</cite:citation>

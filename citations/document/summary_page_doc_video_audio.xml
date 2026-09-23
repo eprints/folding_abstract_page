@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+
+<!-- 
+-->
+
+<cite:citation xmlns="http://www.w3.org/1999/xhtml" xmlns:epc="http://eprints.org/ep3/control" xmlns:cite="http://eprints.org/ep3/citation" >
+
+  <epc:if test="mime_type.one_of('audio/x-wav', 'audio/mpeg', 'audio/ogg', 'audio/flac', 'audio/x-ms-wma', 'audio/ac3', 'audio/mpeg') or format = 'audio'">
+    <epc:print expr="$item.icon('LargeIcon','noNewWindow')"/>
+    <audio class="audio-preview" controls="true">
+      <source src="{$item.url()}"/>
+    </audio>
+  </epc:if>
+
+  <epc:if test="mime_type.one_of('video/mpeg', 'video/quicktime', 'video/x-msvideo', 'video/x-ms-wmv', 'video/x-m4v', 'video/mp4', 'video/x-flv', 'video/mp2t') or format = 'video'">
+    <!--<epc:print expr="$item.embed_video('vid-preview')" />-->
+    <video src="{$item.url()}" width="100%" class="ep_embedded_video" controls="true"></video>
+  </epc:if> 
+
+
+  <div class="summary_page_doc_info">
+    <div class="ep_document_citation_wrapper">
+      <epc:print expr="$item.citation('summary_page_doc_info')" />    
+    </div>
+  </div>
+
+</cite:citation>
