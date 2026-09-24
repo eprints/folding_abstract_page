@@ -1,3 +1,4 @@
+# Folding abstract page
 An ingredient for EPrints that adds folding per-document type sections to the abstract page.
 
 Provides a EPrint summary_page citation, which can be copied to the archive and modified as needed.
