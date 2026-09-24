@@ -1,17 +1,17 @@
 $c->{folding_abstract_page} = {
 
-    # Used to filter the doctype in some way. Could be used to map "application/pdf" to "document", or convert the slash to an underscore
-    filter_doctype => sub {
-        my ($doctype) = @_;
+    # Used to transform the document format in some way. Could be used to map "application/pdf" to "document", or convert the slash to an underscore
+    map_format => sub {
+        my ($format) = @_;
 
-        return $doctype;
+        return $format;
     },
 
-    # Example: Remove slashes from the doctype, because you are using mimetypes as document types.
-    #filter_doctype => sub {
-    #    my ($doctype) = @_;
-    #    $doctype =~ s/\//_/g;
-    #    return $doctype;
+    # Example: Remove slashes from the format, because you are using mimetypes as document types.
+    #map_format => sub {
+    #    my ($format) = @_;
+    #    $format =~ s/\//_/g;
+    #    return $format;
     #},
 
 
@@ -69,7 +69,7 @@ $c->{folding_abstract_page} = {
         # in the format of "document_video"
         foreach my $document ($eprint->get_all_documents()) {
             my $id =  $document->get_value("format");
-            $id = "document_" . &{$repository->config("folding_abstract_page", "filter_doctype")}($id); 
+            $id = "document_" . &{$repository->config("folding_abstract_page", "map_format")}($id); 
 
             if (!defined $fragments{$id}) {
                 my $frag = $repository->xml()->create_document_fragment();
@@ -97,7 +97,7 @@ $c->{folding_abstract_page} = {
         # also adds a "size" attribute to the fragments. Used for styling.
         my $ds = $repository->get_dataset("document");
         foreach my $key ( $ds->get_field("format")->tags() ) {
-            $id = "document_"  . &{$repository->config("folding_abstract_page", "filter_doctype")}($key); 
+            $id = "document_"  . &{$repository->config("folding_abstract_page", "map_format")}($key); 
             
             my $value = $fragments{$id};
 
