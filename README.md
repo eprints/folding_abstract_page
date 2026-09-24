@@ -1,4 +1,6 @@
 # Folding abstract page
+
+## Setup
 An ingredient for EPrints that adds folding per-document type sections to the abstract page.
 
 Provides a EPrint `summary_page` citation with the folding pages, which can be copied to the archive and modified as needed.
@@ -28,3 +30,6 @@ These fragments can then be displayed in the EPrint `summary_page` citation, as 
 ```
 
 An example `summary_page` is included with the ingredient.
+
+## Mapping formats
+Sometimes, you might want to map formats - for example, so "video" and "audio" appear in one category, or to map from mimetype style to the expected `text`. This can be done using `$c->{folding_abstract_page}->map_format`, which allows you to modify the format of a document to be something else.
