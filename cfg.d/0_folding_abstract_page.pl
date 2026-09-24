@@ -3,7 +3,7 @@ $c->{folding_abstract_page} = {
     # Used to transform the document format in some way. Could be used to map "application/pdf" to "document", or convert the slash to an underscore
     map_format => sub {
         my ($format) = @_;
-
+        $format =~ s/\/.*//g;
         return $format;
     },
 
@@ -13,6 +13,7 @@ $c->{folding_abstract_page} = {
     #    $format =~ s/\//_/g;
     #    return $format;
     #},
+
 
 
     generate_fragments => sub {
@@ -105,22 +106,24 @@ $c->{folding_abstract_page} = {
                 $fragments{$id} = [ 0, "BOOLEAN" ];
             }
             else {
-                my $node = $value->[0];
+                if ($value->[1] ne "BOOLEAN") {
+                    my $node = $value->[0];
 
-                my $size = $node->childNodes->size;
-                if ( $size == 1 ) {
-                    $size = "single";
-                }
-                elsif ( $size < 5 ) {
-                    $size = "large";
-                }
-                elsif ( $size < 11 ) {
-                    $size = "medium";
-                }
-                else {
-                    $size = "small";
-                }
-                $node->setAttribute( "size", $size );
+                    my $size = $node->childNodes->size;
+                    if ( $size == 1 ) {
+                        $size = "single";
+                    }
+                    elsif ( $size < 5 ) {
+                        $size = "large";
+                    }
+                    elsif ( $size < 11 ) {
+                        $size = "medium";
+                    }
+                    else {
+                        $size = "small";
+                    }
+                    $node->setAttribute( "size", $size );
+                };
             }
         }
 
